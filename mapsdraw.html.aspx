@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 
 <!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> -->
 <%@ Page Language="C#" %>
@@ -17,7 +17,7 @@
                 <title>sample map draw page</title>
                 <meta http-equiv="X-UA-Compatible" content="IE=10" />
                 <!-- Bootstrap -->
-                <SharePoint:ScriptLink runat="server" localizable="false" language="javascript" name="core.js" __designer:Preview="" __designer:Values="&lt;P N=&#39;Language&#39; T=&#39;javascript&#39; /&gt;&lt;P N=&#39;Name&#39; T=&#39;core.js&#39; /&gt;&lt;P N=&#39;Localizable&#39; T=&#39;False&#39; /&gt;&lt;P N=&#39;ID&#39; ID=&#39;1&#39; T=&#39;ctl00&#39; /&gt;&lt;P N=&#39;Page&#39; ID=&#39;2&#39; /&gt;&lt;P N=&#39;TemplateControl&#39; R=&#39;2&#39; /&gt;&lt;P N=&#39;AppRelativeTemplateSourceDirectory&#39; R=&#39;-1&#39; /&gt;"></SharePoint:ScriptLink>
+                <SharePoint:ScriptLink runat="server" localizable="false" language="javascript" name="core.js"></SharePoint:ScriptLink>
 
 <!--
                 <link type="text/css" rel="stylesheet" href="../SiteAssets/css/bootstrap.css" />
@@ -158,12 +158,12 @@ button:hover{
     background: #fff;
     padding: 10px;
     margin: 10px;
-    border: 3px solid #000;
+    border: 1px solid #000;
      position:absolute;
  
  
 z-index:10;
-width:15%;
+width:10%;
 
   }
  
@@ -180,17 +180,15 @@ width:15%;
     vertical-align: middle;
 }
 
-.vlr {
-  border-left: thick solid #ff0000;
-}
+ 
 
-/*
+ 
 .vlr {
     border-left: 6px solid red;
-    height: 18px;
+ /*   height: 18px;  */
  
 }
-*/
+ 
 
 .vlb {
     border-left: 6px solid blue;
@@ -250,8 +248,8 @@ width:15%;
 
 <div id="legend"   style="width:20%; " ><h3>Map Legend</h3>
  
- <div>
-        <input type="checkbox" id="red" name="red" value="red"   style="padding-left:15px;"   onchange= "dothis(this)" class="vlr"/>
+ <div class="vlr">
+        <input type="checkbox" id="red" name="red" value="red"    style="padding-left:15px;"   onchange= "dothis(this)" />
  
 <!--	<img src="../SiteAssets/red.jpg">  -->
         <label for="scales" style="padding-left:10px;"> </label>
@@ -259,8 +257,8 @@ width:15%;
  
     </div>
 
-    <div>
-        <input type="checkbox" id="blue" name="blue" style="padding-left:15px;"  onchange= "dothis(this)" value="blue"  class="vlb"/>
+    <div class="vlb">
+        <input type="checkbox" id="blue" name="blue" style="padding-left:15px;"  onchange= "dothis(this)" value="blue"  />
  
 
         <label for="horns" style="padding-left:10px;"> </label>
@@ -268,8 +266,8 @@ width:15%;
 
     </div>
 
-    <div>
-        <input type="checkbox" id="green" name="green" style="padding-left:15px;"  onchange= "dothis(this)" value="green" class="vlg" />
+    <div class="vlg">
+        <input type="checkbox" id="green" name="green" style="padding-left:15px;"  onchange= "dothis(this)" value="green"  />
  
 
         <label for="horns" style="padding-left:10px;"> </label>
@@ -277,8 +275,8 @@ width:15%;
 
     </div>
 
-    <div>
-        <input type="checkbox" id="yellow" name="yellow"  style="padding-left:15px;" onchange= "dothis(this)" 	      value="yellow"  class="vly"/>
+    <div class="vly">
+        <input type="checkbox" id="yellow" name="yellow"  style="padding-left:15px;" onchange= "dothis(this)" 	      value="yellow"  />
  
         <label for="horns" style="padding-left:10px;"> </label>
 		<span id="yy"></span>	
@@ -385,19 +383,19 @@ function add(map)
 // do loop baed on a counter
 //-----------------------------
 
-for (var i=0; i<200; i++)
+for (var i=0; i<1000; i++)
  {
 // ger random latitude
-   var xx = (gen(0, 100, 3) );
+   var xx = (gen(0, 200, 3) );
 
 // get longitude value  
 
-   var yy = (gen(70, 80, 4) );
+   var yy = (gen(0, 200, 4) );
 
 //----------
 // red marker
 //-----------
- if (xx <= 25.00)
+ if (xx <= 50.00)
  {
 
  
@@ -422,7 +420,7 @@ for (var i=0; i<200; i++)
 //----------
 // green marker
 //-----------
-  if ((xx > 25)  && (xx <=  50.00))
+  if ((xx > 50)  && (xx <=  100.00))
 {
 
 //  create green marker based on random lat & long  
@@ -446,7 +444,7 @@ for (var i=0; i<200; i++)
 //-----------------
 // yellow  marker
 //-----------------
-  if (( xx > 50) &&  (xx <=  75.00))
+  if (( xx > 100) &&  (xx <=  150.00))
 {
 
 // create yellow marker
@@ -467,7 +465,7 @@ for (var i=0; i<200; i++)
 //----------
 // blue  marker
 //-----------
-  if ( xx > 75.00  )
+  if ( xx > 150.00  )
 {
 
 // blue marker
@@ -587,10 +585,12 @@ switch (chk) {
 //Step 3: make the map interactive
 // MapEvents enables the event system
 // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
-//   var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+
+   var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 
 // Create the default UI components
-///var ui = H.ui.UI.createDefault(map, defaultLayers);
+
+ var ui = H.ui.UI.createDefault(map, defaultLayers);
 
 // Now use the map as required...
   //   addMarkersToMap(map);
